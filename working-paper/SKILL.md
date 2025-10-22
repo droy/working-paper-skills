@@ -70,6 +70,40 @@ Follow these practices for maintainable LaTeX:
 3. **Structural comments**: Use `% ============` dividers for major sections
 4. **Descriptive labels**: `\label{thm:main}` not `\label{t1}`
 
+### Equation Formatting
+
+Format long equations using `align` environment to prevent overfull hbox issues:
+
+**Alignment conventions**:
+- Place `&` before relations (`=`, `\le`, `\ge`, etc.)
+- When breaking at binary operators (`+`, `-`), place operator on new line
+- Indent continued lines with `&\quad` or `&\qquad` to align with content (not relation)
+
+**Example**:
+```latex
+\begin{align}
+f(x) &= a + b + c + d + e + f + g \\
+     &\quad + h + i + j + k \\
+     &= (a + b + c) + (d + e + f) \\
+     &\le M
+\end{align}
+```
+
+### LaTeX Warnings
+
+**Ignore unless user explicitly requests fixes**:
+- Overfull `\hbox` warnings (often benign)
+- Underfull `\hbox` warnings
+- Minor spacing issues
+
+**Address proactively**:
+- Undefined references or citations
+- Missing labels
+- Package conflicts or errors
+- Multiply defined labels
+
+Use good formatting practices (like `align` for long equations) to naturally avoid warnings, but don't chase down every overfull hbox.
+
 ## Document Organization
 
 Organize content to aid both human and LLM readers:
