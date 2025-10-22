@@ -1,0 +1,120 @@
+% Working Paper Template
+% This template provides a starting point for mathematical research working papers
+% Customize as needed for your specific project
+
+\documentclass{article}
+
+% Standard mathematical packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+% Bibliography management
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+\addbibresource{references.bib}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+
+% ============================================================================
+% SEMANTIC MACROS
+% ============================================================================
+% Define semantic macros here to make variables meaningful and easy to refactor
+% Naming convention: Use compact, prefix-free names
+% Examples:
+%   - Measures: \measa, \measb, \measmu, \measnu
+%   - Vectors: \va, \vb, \vx, \vy
+%   - Sets: \seta, \setb, \setx
+%   - Functions: \fa, \fb, \fmap
+%   - Operators: \opa, \opb, \opt
+%
+% Keep macros compact (token-efficient) and prefix-free (enables clean search-and-replace)
+% ============================================================================
+
+% Example measure macros
+\newcommand{\measa}{\mu}
+\newcommand{\measb}{\nu}
+
+% Example vector macros
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+
+% Example set macros
+\newcommand{\seta}{\mathcal{A}}
+\newcommand{\setb}{\mathcal{B}}
+
+% Add your semantic macros below:
+% \newcommand{\yourmacro}{...}
+
+
+\title{Working Paper Title}
+\author{Author Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Brief description of the main results and approach.
+\end{abstract}
+
+% ============================================================================
+\section{Introduction}
+% ============================================================================
+
+Motivate the problem and outline the approach.
+
+
+% ============================================================================
+\section{Definitions and Preliminaries}
+% ============================================================================
+
+\begin{definition}
+Define key concepts here.
+\end{definition}
+
+
+% ============================================================================
+\section{Main Results}
+% ============================================================================
+
+\begin{theorem}
+\label{thm:main}
+State main theorem here.
+\end{theorem}
+
+\begin{proof}
+Proof goes here. For incomplete proofs, use proof sketches with explicit TODOs.
+\end{proof}
+
+
+% ============================================================================
+\section{Open Questions and Failed Approaches}
+% ============================================================================
+% Document approaches that didn't work and why - this helps avoid revisiting
+% dead ends and may provide insights for readers attempting similar problems.
+
+\subsection{Failed Approach: [Description]}
+
+% Describe the approach that was attempted and why it failed
+
+
+% ============================================================================
+% Bibliography
+% ============================================================================
+
+\printbibliography
+
+\end{document}

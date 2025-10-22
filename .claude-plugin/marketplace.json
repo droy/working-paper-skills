@@ -1,0 +1,22 @@
+{
+  "name": "working-paper-skills",
+  "owner": {
+    "name": "droy",
+    "email": "danroy@gmail.com"
+  },
+  "metadata": {
+    "description": "Claude Skills for conducting mathematical research with LaTeX working documents",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "working-paper",
+      "description": "Use when conducting mathematical research with LaTeX working documents - maintains clean LaTeX with semantic macros, documents mathematical insights in git commits, organizes definitions/theorems/proofs, and tracks both successful results and failed approaches",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./working-paper"
+      ]
+    }
+  ]
+}
