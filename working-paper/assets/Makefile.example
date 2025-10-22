@@ -1,0 +1,39 @@
+# Example Makefile for LaTeX working paper
+# Adapt this to your project by changing MAIN to your main .tex filename
+
+# Main document name (without .tex extension)
+MAIN = main
+
+# LaTeX compiler (pdflatex or xelatex)
+LATEX = pdflatex
+
+# Bibliography tool (biber for biblatex)
+BIB = biber
+
+# Default target: build the PDF
+all: $(MAIN).pdf
+
+# Build PDF with bibliography
+$(MAIN).pdf: $(MAIN).tex $(MAIN).bib
+	$(LATEX) $(MAIN)
+	$(BIB) $(MAIN)
+	$(LATEX) $(MAIN)
+	$(LATEX) $(MAIN)
+
+# Quick build without bibliography update
+quick: $(MAIN).tex
+	$(LATEX) $(MAIN)
+
+# Clean auxiliary files
+clean:
+	rm -f *.aux *.log *.out *.toc *.bbl *.blg *.bcf *.run.xml *.fls *.fdb_latexmk *.synctex.gz
+
+# Clean everything including PDF
+cleanall: clean
+	rm -f $(MAIN).pdf
+
+# Watch mode (requires latexmk)
+watch:
+	latexmk -pdf -pvc -interaction=nonstopmode $(MAIN).tex
+
+.PHONY: all quick clean cleanall watch

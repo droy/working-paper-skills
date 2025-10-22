@@ -9,6 +9,9 @@
 \usepackage{amsthm}
 \usepackage{amssymb}
 
+% Smart cross-referencing
+\usepackage{cleveref}
+
 % Bibliography management
 \usepackage[backend=biber,style=alphabetic]{biblatex}
 \addbibresource{references.bib}
@@ -26,6 +29,12 @@
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{note}[theorem]{Note}
+
+% Cleveref names for custom environments (if you add any)
+% Standard environments (theorem, lemma, etc.) are handled automatically
+% Example for assumption environment:
+% \newtheorem{assumption}[theorem]{Assumption}
+% \crefname{assumption}{Assumption}{Assumptions}
 
 % ============================================================================
 % SEMANTIC MACROS
@@ -82,6 +91,7 @@ Motivate the problem and outline the approach.
 % ============================================================================
 
 \begin{definition}
+\label{defn:example}
 Define key concepts here.
 \end{definition}
 
@@ -91,8 +101,8 @@ Define key concepts here.
 % ============================================================================
 
 \begin{theorem}
-\label{thm:main}
-State main theorem here.
+\label{thm:main-result}
+State main theorem here using the notation from \cref{defn:example}.
 \end{theorem}
 
 \begin{proof}
