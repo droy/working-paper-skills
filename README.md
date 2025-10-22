@@ -130,4 +130,6 @@ Issues and pull requests welcome! If you develop improvements or find issues, pl
 
 ## License
 
-This skill is provided as-is for educational and research purposes. Feel free to modify and adapt it for your own use.
+MIT License - see [LICENSE](LICENSE) file for details.
+
+Feel free to use, modify, and distribute this skill. Attribution is appreciated!
