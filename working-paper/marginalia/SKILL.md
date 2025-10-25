@@ -1,6 +1,6 @@
 ---
 name: marginalia-collaboration
-description: Use when adding comments, questions, or review markers to LaTeX documents with collaborators - enables localized conversation through margin notes (fTBD), attention markers (NA), and error flags (fPROBLEM) that can be toggled off for publication
+description: Use when collaborating on LaTeX documents and need to add comments, questions, or review markers that can be easily toggled off for publication - provides margin notes and inline highlighting for localized discussion
 ---
 
 # Marginalia: Collaborative LaTeX Commenting
