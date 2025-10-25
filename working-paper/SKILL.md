@@ -38,23 +38,21 @@ Before starting work, determine the project structure:
 
 ## LaTeX Hygiene
 
-### Semantic Macros
+### Semantic vs Syntactic Commands
 
-Use semantic macros instead of raw characters to make notation refactorable and meaningful.
+**Core principle**: Always prefer semantic macros that specify **meaning** over syntactic macros that specify **appearance**.
 
-**Core principles**:
-- **Compact**: Keep macros short (token-efficient for both humans and LLMs)
-- **Prefix-free**: Enable clean search-and-replace without false matches
-- **Semantic**: Convey meaning, not just appearance
+**Why?** Semantic macros make notation refactorable. When you change your mind about notation (which happens constantly in research), you can update one macro definition instead of hunting through the document.
 
-**Naming patterns** (from `references/latex-best-practices.md`):
-- Measures: `\measa`, `\measb`, `\measmu`
-- Vectors: `\va`, `\vb`, `\vx`
-- Sets: `\seta`, `\setb`, `\setx`
-- Functions: `\fa`, `\fb`, `\fmap`
-- Operators: `\opa`, `\opb`, `\opt`
+**Examples of semantic vs syntactic built-ins**:
+- Use `\to` (semantic: "goes to") not `\rightarrow` (syntactic: "right arrow")
+- Use `\Nats` (semantic: naturals) not `\mathbb{N}` (syntactic: blackboard N)
 
-**Example**:
+**Key heuristic**: **If you're repeating a chunk of LaTeX code multiple times, there's probably a macro that needs to be defined.**
+
+### Defining Semantic Macros
+
+**Simple variable macros**:
 
 Bad (hard to refactor):
 ```latex
@@ -68,18 +66,102 @@ Good (easy to refactor):
 Let \measa and \measb be two measures...
 ```
 
+Now if you want to change `\measa` from μ to σ, you update one line.
+
+**Composite notation macros**:
+
+If you're using `L_{\mathcal{D}}(h)` repeatedly for "risk of classifier h under distribution D":
+
+```latex
+\newcommand{\Dist}{\mathcal{D}}  % semantic macro for distribution
+\newcommand{\risk}[2]{L_{#1}(#2)}  % semantic macro for risk
+
+% Usage:
+\risk{\Dist}{h}
+```
+
+This makes both the notation and the code easier to read and change.
+
+**Naming patterns**:
+- Measures: `\measa`, `\measb`, `\measmu`
+- Vectors: `\va`, `\vb`, `\vx`
+- Sets: `\seta`, `\setb`, `\setx`
+- Functions: `\fa`, `\fb`, `\fmap`
+- Operators: `\opa`, `\opb`, `\opt`
+
+**Core principles**:
+- **Compact**: Keep macros short (token-efficient for both humans and LLMs)
+- **Prefix-free**: Enable clean search-and-replace without false matches
+- **Semantic**: Convey meaning, not just appearance
+
 **For existing documents**: Use existing macro patterns and definitions. Don't introduce new conventions unless there's clear benefit.
 
 **When introducing new macros**: Check what's already defined and maintain consistency with existing patterns.
 
-### Code Quality
+### Avoiding Bare Roman Characters
+
+**Problem**: Using bare letters like `x`, `y`, `r`, `s` for mathematical variables makes them nearly impossible to refactor later. The letter `r` appears everywhere in surrounding text, so find-and-replace is painful and error-prone.
+
+**Three solutions**:
+
+1. **Always use macros** (recommended for longer papers):
+   ```latex
+   \newcommand{\radius}{r}
+   \newcommand{\dist}{d}
+   % Later, easy to change r → \rho without affecting text
+   ```
+
+2. **Bracket convention** for easy search-replace:
+   ```latex
+   % Use {x} and {r} throughout
+   C^{x}  % easy to replace {x} with {x^*}
+   ```
+   Warning: Be careful with expressions like `C^{x}` when replacing `{x}` with `x^*` (produces `C^x^*`, an error).
+
+3. **Use Greek letters** whose macros are easily swapped:
+   ```latex
+   \alpha, \beta, \gamma  % easy to search-replace \alpha → \beta
+   ```
+
+**When to use which approach**:
+- Very short assignments: Bare letters are fine
+- Longer papers where notation might change: Use macros or Greek letters
+- Following established conventions: If mimicking another paper's notation wholesale, bare letters may be acceptable
+- Generic placeholders: Define `\genvar`, `\genfn` macros for generic variables
+
+**Note**: Even with these conventions, **always use semantic macros for composite notation** like `\risk` above—they're easier to type and read regardless of symbol choice.
+
+### Code Quality and Whitespace
 
 Follow these practices for maintainable LaTeX:
 
+**Line breaks and logical chunks**:
 1. **One sentence per line**: Makes git diffs readable
-2. **Consistent indentation**: Aids in understanding structure
-3. **Structural comments**: Use `% ============` dividers for major sections
-4. **Labels with cleveref**: Use `\usepackage{cleveref}` and descriptive labels
+   - When sentence is very long, break it up into logical chunks
+   - Different lines for sequence of mathematical objects
+   - Helps version control: changes affect only small chunks of text
+
+2. **Whitespace in math mode**: Ignored by LaTeX, but massively improves readability
+   ```latex
+   % Stack long \frac arguments vertically:
+   \frac{
+     a + b + c + d + e
+   }{
+     x + y + z + w
+   }
+   ```
+
+**Comments for collaboration**:
+3. **Use % comments liberally**:
+   - Hide code you might want later (long derivations that are "straightforward")
+   - Explain why choices were made for future collaborators
+   - Mark TODOs and gaps in proofs
+   - Comments run until end of line
+
+**Structure and references**:
+4. **Consistent indentation**: Aids in understanding structure
+5. **Structural comments**: Use `% ============` dividers for major sections
+6. **Labels with cleveref**: Use `\usepackage{cleveref}` and descriptive labels
    - Format: `type:description` (e.g., `defn:mixability`, `thm:main-result`, `lem:continuity`)
    - Compact but informative: convey what the object is about
    - Use `\cref{defn:mixability}` to reference (automatically adds "Definition")
@@ -120,6 +202,27 @@ f(x) &= a + b + c + d + e + f + g \\
 - Multiply defined labels
 
 Use good formatting practices (like `align` for long equations) to naturally avoid warnings, but don't chase down every overfull hbox.
+
+### Recommended Packages
+
+These packages make writing complex mathematical documents much easier:
+
+**Essential**:
+- **amsmath, amssymb, amsthm**: Core packages for mathematical typesetting
+  - Use `align`, `gather`, `split` environments instead of deprecated `eqnarray`
+  - Better spacing and more powerful equation formatting
+- **cleveref**: Automatic reference formatting with `\cref{label}`
+  - Figures out correct word ("Theorem", "Definition", "Equation")
+  - Add `\crefname` commands for custom environments
+- **biblatex**: Modern bibliography management (replacing natbib)
+  - Use with biber backend: `\usepackage[backend=biber,style=alphabetic]{biblatex}`
+  - Better control over citation formatting
+
+**Very useful**:
+- **autonum**: Automatically numbers only equations that are referenced
+  - Lets you use numbered equations everywhere
+  - Only actually numbered in output if cited with `\ref` or `\cref`
+  - Cleaner output without manual `equation*` vs `equation` decisions
 
 ## Document Organization
 
