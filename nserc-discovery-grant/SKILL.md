@@ -15,7 +15,9 @@ This skill guides the preparation of NSERC Discovery Grant applications by groun
 - Planning application strategy and timeline
 - Addressing reviewer feedback from previous submissions
 
-**Key principle**: NSERC applications are evaluated as an integrated package. All components (research proposal, CCV, HQP training plan, budget justification) must tell a coherent story that addresses the three evaluation criteria.
+**Key principles**:
+- **Package coherence**: NSERC applications are evaluated as an integrated package. All components (research proposal, CCV, HQP training plan, budget justification) must tell a coherent story that addresses the three evaluation criteria.
+- **Narrative prose**: Application.md text sections should be written in flowing paragraphs, not bullet points or heavily formatted Markdown. Reviewers read continuous prose, not slide decks.
 
 ---
 
@@ -251,6 +253,7 @@ These tips come from experienced NSERC reviewers and should guide every aspect o
 - ✅ Cite relevant Top 10 Tips by number
 - ✅ Emphasize writing for general audience (Tip #6)
 - ✅ Provide Merit Indicator coverage checklist (lines 307-376) for self-assessment
+- ✅ For Application.md content: Write in flowing paragraphs, NOT bullet points or excessive Markdown
 
 **Never**:
 - ❌ Provide generic grant advice without NSERC-specific grounding
@@ -258,6 +261,7 @@ These tips come from experienced NSERC reviewers and should guide every aspect o
 - ❌ Forget that committee is cross-disciplinary
 - ❌ Skip the Merit Indicator mapping
 - ❌ Assume user knows which items they need to address
+- ❌ Write Application.md sections as bullet lists or heavily formatted Markdown
 
 ### Note on Deadline Pressure
 
@@ -621,6 +625,60 @@ wc -c <<< "$(sed -n '/^# Section Name/,/^#/p' Application.md)"
 ```
 
 **CRITICAL**: Do NOT change the structure of Application.md. The sections and organization reflect the current NSERC application form structure, which cannot be changed. Only edit content within existing sections.
+
+**Writing style for Application.md**:
+
+**DO**:
+- Write in **flowing paragraphs** of narrative text
+- Use logical flow and transitions between ideas within paragraphs
+- Structure arguments through prose, not formatting
+- Use headers ONLY to separate major items (e.g., each of the five Most Significant Contributions)
+- Write like you're telling a coherent story about your research
+
+**DO NOT**:
+- Use bullet point lists (except in very rare cases where enumeration is essential)
+- Use excessive Markdown formatting (bold, italics, etc.)
+- Use hierarchical headers within sections (no `##`, `###` within a form section)
+- Break up prose into fragmented bullet points
+- Use bullet lists when a paragraph would be clearer
+
+**Example - WRONG (too much Markdown)**:
+```markdown
+## HQP Training Plan
+
+My training approach includes:
+- Weekly one-on-one meetings
+- Group seminars every two weeks
+- Conference presentation opportunities
+- Collaborative research projects
+
+**Technical skills:**
+- Machine learning algorithms
+- Statistical inference
+- Python programming
+
+**Professional skills:**
+- Scientific writing
+- Oral presentation
+- Project management
+```
+
+**Example - CORRECT (flowing narrative)**:
+```markdown
+# HQP Training Plan
+
+My training program centers on developing both technical and professional skills through hands-on research experience. Students meet with me weekly for one-on-one discussions of their research progress, where we work through technical challenges and plan next steps. These individual meetings are complemented by biweekly group seminars where students present their work to peers, developing both presentation skills and the ability to give and receive constructive feedback.
+
+On the technical side, students develop expertise in machine learning algorithms, statistical inference, and computational implementation through their research projects. I emphasize learning by doing—students implement methods from scratch before using existing libraries, which builds deep understanding. Professional development is equally important: students write papers, present at conferences, and learn to manage long-term research projects independently.
+
+[... continues in paragraph form]
+```
+
+**When limited structure is acceptable**:
+- **Most Significant Contributions**: Use a header (e.g., `## Contribution 1: [Title]`) to separate each of the five contributions, then write each contribution description in paragraphs
+- **Enumeration of specific items**: If you must list (e.g., "three main objectives"), write as numbered prose: "First, ... Second, ... Third, ..." NOT as bullet points
+
+**Why this matters**: NSERC application sections will be copy-pasted into web form text boxes. The narrative needs to read naturally as continuous prose, not as a slide deck or outline. Reviewers read applications as documents, not structured lists.
 
 ### LaTeX Attachments - Template System
 
