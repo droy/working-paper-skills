@@ -496,19 +496,86 @@ When working with an organized NSERC application repository, follow these patter
 
 ### Repository Structure
 
-**Recommended organization**:
+**Expected organization**:
 ```
 nserc-dg-2025/
-├── Application.md              # Text-only responses for web form
-├── nserc-template.tex          # Master template for all attachments
-├── headers.tex                 # Theorem environments, packages, fonts
-├── defs.tex                    # Custom macros and notation
-├── roy-nserc-proposal.tex      # Research proposal attachment
-├── roy-nserc-budget-justification.tex
-├── roy-nserc-references.tex    # List of references
-├── references.bib              # Bibliography file
-└── review.tex                  # Synthetic review (if requested)
+├── Application.md                      # Text-only responses for web form
+├── nserc-template.tex                  # Master template for all attachments
+├── header.tex                          # Theorem environments, packages, fonts
+├── defs.tex                            # Custom macros and notation
+├── roy-nserc-proposal.tex              # Research proposal attachment
+├── roy-nserc-budget-justification.tex  # Budget justification attachment
+├── roy-nserc-references.tex            # List of references attachment
+├── references.bib                      # Bibliography file
+├── CCV.pdf                             # Rendered Common CV
+├── review.tex                          # Synthetic review (if requested)
+├── past-applications/                  # Exemplar NSERC DG applications
+│   ├── colleague1-stats/               # Example from statistics colleague
+│   ├── colleague2-stats/               # Example from statistics colleague
+│   ├── colleague3-stats/               # Example from statistics colleague
+│   ├── applicant-2020/                 # Applicant's 2020 application
+│   ├── applicant-2020_RESULTS/         # 2020 application results
+│   ├── applicant-2015/                 # Applicant's 2015 application
+│   └── applicant-2015_RESULTS/         # 2015 application results
+├── samples-of-research-contributions/  # Three papers submitted as samples
+│   ├── paper1.pdf
+│   ├── paper2.pdf
+│   └── paper3.pdf
+├── writing-samples/                    # Related writing showing applicant's style
+│   └── ...                             # Papers, proposals (not publicly available)
+└── most-significant-contributions/     # Five bodies of work
+    ├── contribution1/                  # Body of work for MSC #1
+    ├── contribution2/                  # Body of work for MSC #2
+    ├── contribution3/                  # Body of work for MSC #3
+    ├── contribution4/                  # Body of work for MSC #4
+    └── contribution5/                  # Body of work for MSC #5
 ```
+
+### Reference Materials in Repository
+
+The repository contains extensive reference materials to inform application development:
+
+**past-applications/**:
+- **Purpose**: Exemplar NSERC Discovery Grant applications for reference
+- **Contents**:
+  - Three successful applications from statistics colleagues (generally more conservative/less hype than ML)
+  - Two past applications from applicant with results (subfolders with `_RESULTS` suffix)
+- **How to use**:
+  - Review structure and presentation style
+  - Observe how colleagues frame significance, feasibility, HQP training
+  - Learn from past feedback in `_RESULTS` folders
+  - Note discipline differences (statistics vs ML conventions)
+
+**samples-of-research-contributions/**:
+- **Purpose**: Three papers submitted as research contribution samples
+- **How to use**:
+  - Ensure consistency between papers and how they're described in Application.md
+  - Reference when writing "Most Significant Contributions" section
+  - Check that proposal builds on or extends these contributions
+
+**writing-samples/**:
+- **Purpose**: Related writing (papers, proposals) showing applicant's typical writing style
+- **Contents**: Papers and related proposals (generally not publicly available)
+- **How to use**:
+  - Understand applicant's voice and terminology
+  - Maintain consistency in how past work is described
+  - Reference when describing research program and trajectory
+
+**most-significant-contributions/**:
+- **Purpose**: Five subfolders, each representing a body of work (significant research contribution)
+- **Organization**: Each subfolder contains papers/materials for one contribution
+- **How to use**:
+  - Directly pertains to "Most Significant Contributions" section of Application.md
+  - Each contribution should be described in Application.md with references to materials in subfolder
+  - Ensure descriptions are accessible (Tip #6) while showing impact
+
+**CCV.pdf**:
+- **Purpose**: Rendered Common CV (curriculum vitae)
+- **How to use**:
+  - Cross-reference with "Excellence of Researcher" claims
+  - Verify consistency with past contributions descriptions
+  - Ensure HQP supervision record matches CCV
+  - Check that expertise demonstrated in CCV aligns with proposed research
 
 ### Application.md - Text-Only Responses
 
@@ -540,8 +607,10 @@ wc -c <<< "$(sed -n '/^# Section Name/,/^#/p' Application.md)"
 
 **Template hierarchy**:
 1. **`nserc-template.tex`**: Master template with document class, margins, font size
-2. **`headers.tex`**: Theorem environments, packages, bibliography setup (imported by template)
+2. **`header.tex`**: Theorem environments, packages, bibliography setup (imported by template)
 3. **`defs.tex`**: Custom macros like `\Reals`, `\KL`, `\EE` (imported by template)
+
+**IMPORTANT**: Do NOT change template files (`nserc-template.tex`, `header.tex`, `defs.tex`) unless explicitly requested by user. These provide consistent formatting across all attachments.
 
 **Document naming convention**: `roy-nserc-{attachment-name}.tex`
 
