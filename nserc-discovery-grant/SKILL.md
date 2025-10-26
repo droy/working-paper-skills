@@ -263,6 +263,19 @@ These tips come from experienced NSERC reviewers and should guide every aspect o
 
 When user has tight deadline, the structured workflow becomes MORE important, not less. Use it to prioritize: identify the most critical Merit Indicator gaps and have user address those first. Quick, unfocused feedback wastes precious time.
 
+### Synthetic Reviews
+
+For comprehensive application assessment, create a synthetic review document:
+- Organized by three evaluation criteria and Merit Indicator items
+- Written from cross-disciplinary reviewer perspective
+- Assesses each section on 6-level scale
+- Identifies strengths, gaps, and prioritized improvements
+- Includes cross-component consistency check
+- Created as `review.tex` and compiled to PDF
+- See "Repository Organization and Workflow" section for detailed structure
+
+**When to offer**: User requests comprehensive review, application is substantially complete, or preparing for submission.
+
 ---
 
 ## Writing for Cross-Disciplinary Committee
@@ -474,6 +487,225 @@ Use this checklist to ensure systematic coverage of all items.
 - Make connections between disciplines accessible
 - Show you understand both areas (via CCV)
 - Extra attention to Tip #6 (general audience)
+
+---
+
+## Repository Organization and Workflow
+
+When working with an organized NSERC application repository, follow these patterns for consistency and version control.
+
+### Repository Structure
+
+**Recommended organization**:
+```
+nserc-dg-2025/
+├── Application.md              # Text-only responses for web form
+├── nserc-template.tex          # Master template for all attachments
+├── headers.tex                 # Theorem environments, packages, fonts
+├── defs.tex                    # Custom macros and notation
+├── roy-nserc-proposal.tex      # Research proposal attachment
+├── roy-nserc-budget-justification.tex
+├── roy-nserc-references.tex    # List of references
+├── references.bib              # Bibliography file
+└── review.tex                  # Synthetic review (if requested)
+```
+
+### Application.md - Text-Only Responses
+
+**Purpose**: Collects text-only responses that will be copy-pasted into NSERC's web application form.
+
+**Structure**:
+- Sections marked with Markdown headers (`#`)
+- Character limits noted in square brackets `[3,000 characters max]`
+- Metadata in square brackets (not submitted)
+- Content organized to match NSERC application form structure
+
+**Character limits** (common sections):
+- Summary: 3,000 characters
+- Relationship to Other Research Support: 12,000 characters
+- HQP Training Plan: 9,000 characters
+- Past Contributions to HQP Training: 6,000 characters
+- Most Significant Contributions: 9,000 characters
+- Additional Information on Contributions: 3,000 characters
+
+**Character counting**:
+```bash
+# Count characters in a section (whitespace counts!)
+wc -c <<< "$(sed -n '/^# Section Name/,/^#/p' Application.md)"
+```
+
+**CRITICAL**: Do NOT change the structure of Application.md. The sections and organization reflect the current NSERC application form structure, which cannot be changed. Only edit content within existing sections.
+
+### LaTeX Attachments - Template System
+
+**Template hierarchy**:
+1. **`nserc-template.tex`**: Master template with document class, margins, font size
+2. **`headers.tex`**: Theorem environments, packages, bibliography setup (imported by template)
+3. **`defs.tex`**: Custom macros like `\Reals`, `\KL`, `\EE` (imported by template)
+
+**Document naming convention**: `roy-nserc-{attachment-name}.tex`
+
+**Standard attachment structure**:
+```latex
+% !BIB program = biber
+\pdfoutput=1
+
+\input{nserc-template.tex}
+\title{Attachment Name}
+
+\begin{document}
+% Content goes here
+\end{document}
+```
+
+**Important**:
+- Do NOT add `\maketitle` - template auto-generates compact header
+- All attachments use same template for consistency
+- Standard formatting: 0.75" margins, 12pt font, letterpaper
+- Uses `marginalia.sty` for collaborative comments (toggle with `hide=false`)
+
+### Building Documents
+
+**For proposal (with bibliography)**:
+```bash
+pdflatex -synctex=1 -interaction=nonstopmode roy-nserc-proposal.tex
+biber roy-nserc-proposal
+pdflatex -synctex=1 -interaction=nonstopmode roy-nserc-proposal.tex
+pdflatex -synctex=1 -interaction=nonstopmode roy-nserc-proposal.tex
+```
+
+**For budget justification (no bibliography)**:
+```bash
+pdflatex -synctex=1 -interaction=nonstopmode roy-nserc-budget-justification.tex
+```
+
+**Clean build artifacts**:
+```bash
+rm -f *.aux *.log *.out *.synctex.gz *.bcf *.run.xml *.blg *.bbl
+```
+
+### Synthetic Reviews
+
+When user requests a "synthetic review" of their application:
+
+**Purpose**: Create a comprehensive review document simulating reviewer perspective, organized by Merit Indicators.
+
+**Workflow**:
+1. Analyze all application components (Application.md + LaTeX attachments)
+2. Create `review.tex` using the standard template structure
+3. Organize review by three evaluation criteria
+4. For each Merit Indicator item:
+   - Assess current state on 6-level scale
+   - Identify strengths
+   - Identify gaps or weaknesses
+   - Suggest specific improvements
+5. Include cross-component consistency assessment
+6. Compile and share PDF with user
+
+**Review.tex structure**:
+```latex
+% !BIB program = biber
+\pdfoutput=1
+
+\input{nserc-template.tex}
+\title{Synthetic Review - NSERC Discovery Grant Application}
+
+\begin{document}
+
+\section{Excellence of the Researcher}
+
+\subsection{Contributions to Research}
+% Assessment, strengths, gaps, suggestions
+
+\subsection{Contributions to Training of HQP}
+% ...
+
+\section{Merit of the Proposal}
+% ...
+
+\section{Training of HQP}
+% ...
+
+\section{Cross-Component Consistency}
+% Package coherence assessment
+
+\section{Overall Assessment and Priorities}
+% Summary and prioritized action items
+
+\end{document}
+```
+
+**Review perspective**:
+- Write from cross-disciplinary reviewer's viewpoint
+- Reference Merit Indicators explicitly
+- Use 6-level scale terminology
+- Be constructive but rigorous
+- Prioritize issues by impact on rating
+
+### Git Version Control
+
+**Use git to track versions between substantial edits**:
+
+**When to commit**:
+- After completing a section of Application.md
+- After major revisions to LaTeX attachments
+- Before and after incorporating feedback
+- Before trying speculative changes
+- At natural breakpoints (end of work session, completed iteration)
+
+**Commit message guidance**:
+```bash
+# Good: Explains what changed and why
+git commit -m "Strengthen HQP training section with completion rates
+
+Added specific numbers (5 PhD completions, avg 4.2 years) and career
+outcomes (2 faculty, 3 industry). Addresses Merit Indicator gap
+identified in review."
+
+# Bad: Too vague
+git commit -m "Updated HQP section"
+```
+
+**Git workflow**:
+```bash
+# Before starting work
+git status  # Verify clean state
+
+# After substantial edits
+git add Application.md roy-nserc-proposal.tex
+git commit -m "Descriptive message with Merit Indicator context"
+
+# View history of a section
+git log -p Application.md
+```
+
+**Benefits**:
+- Track evolution of application over time
+- Revert problematic changes
+- Compare versions to see improvements
+- Document rationale in commit messages
+- Maintain clean checkpoint history
+
+**Important**: Git commits are part of your research process documentation. Commit messages should explain the reasoning behind changes (similar to mathematical insights in working-paper skill).
+
+### Workflow Integration with This Skill
+
+**Typical session**:
+1. **Review current state**: Read Application.md and compiled PDFs
+2. **Identify Merit Indicator gaps**: Use checklist from this skill
+3. **Make edits**: Update Application.md or LaTeX files
+4. **Check character limits**: Use `wc` for Application.md sections
+5. **Build and review**: Compile LaTeX, check output
+6. **Commit changes**: Git commit with Merit Indicator context
+7. **Verify package coherence**: Check cross-component consistency
+
+**When requesting synthetic review**:
+1. Ensure all files are up-to-date and compiled
+2. Request synthetic review
+3. Agent creates `review.tex` with systematic Merit Indicator assessment
+4. Compile review, read carefully
+5. Address high-priority gaps
+6. Iterate
 
 ---
 
