@@ -523,12 +523,17 @@ nserc-dg-2025/
 │   └── paper3.pdf
 ├── writing-samples/                    # Related writing showing applicant's style
 │   └── ...                             # Papers, proposals (not publicly available)
-└── most-significant-contributions/     # Five bodies of work
-    ├── contribution1/                  # Body of work for MSC #1
-    ├── contribution2/                  # Body of work for MSC #2
-    ├── contribution3/                  # Body of work for MSC #3
-    ├── contribution4/                  # Body of work for MSC #4
-    └── contribution5/                  # Body of work for MSC #5
+├── most-significant-contributions/     # Five bodies of work
+│   ├── contribution1/                  # Body of work for MSC #1
+│   ├── contribution2/                  # Body of work for MSC #2
+│   ├── contribution3/                  # Body of work for MSC #3
+│   ├── contribution4/                  # Body of work for MSC #4
+│   └── contribution5/                  # Body of work for MSC #5
+└── initial-drafts/                     # Early work on grant application
+    ├── NOI.pdf                         # Notice of Intent submission
+    ├── conversation1.md                # LLM conversations about grant
+    ├── conversation2.md                # Additional planning discussions
+    └── ...                             # May reference PDFs in same directory
 ```
 
 ### Reference Materials in Repository
@@ -568,6 +573,20 @@ The repository contains extensive reference materials to inform application deve
   - Directly pertains to "Most Significant Contributions" section of Application.md
   - Each contribution should be described in Application.md with references to materials in subfolder
   - Ensure descriptions are accessible (Tip #6) while showing impact
+
+**initial-drafts/**:
+- **Purpose**: Early work on grant application including Notice of Intent and planning discussions
+- **Contents**:
+  - NOI.pdf - Notice of Intent submission providing proposal summary
+  - Markdown files documenting conversations with LLMs about grant development
+  - Additional planning materials and brainstorming sessions
+  - Markdown files may reference PDFs in the same directory
+- **How to use**:
+  - Review NOI.pdf to understand initial proposal framing
+  - Check LLM conversations for early decisions about research direction
+  - Ensure final application is consistent with NOI commitments
+  - Understand evolution of ideas from initial drafts to final application
+  - Reference when revising to maintain coherent narrative thread
 
 **CCV.pdf**:
 - **Purpose**: Rendered Common CV (curriculum vitae)
