@@ -564,6 +564,16 @@ wc -c <<< "$(sed -n '/^# Section Name/,/^#/p' Application.md)"
 - Standard formatting: 0.75" margins, 12pt font, letterpaper
 - Uses `marginalia.sty` for collaborative comments (toggle with `hide=false`)
 
+**NSERC formatting requirements**:
+- **Spell out all acronyms and abbreviations** the first time they appear
+  - Example: "machine learning (ML)" then "ML" subsequently
+  - Applies to both Application.md and LaTeX attachments
+- **Do NOT include hyperlinks or bookmarks** in documents
+  - NO hyperlinks anywhere - not in body text, not in bibliography, nowhere
+  - Turn off "Create Bookmarks" option in PDF compilation
+  - For pdflatex: ensure `\hypersetup{bookmarks=false}` in template
+  - For biblatex: use `\hypersetup{hidelinks}` or configure to suppress URLs in bibliography
+
 ### Building Documents
 
 **For proposal (with bibliography)**:
