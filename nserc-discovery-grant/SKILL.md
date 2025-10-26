@@ -23,6 +23,8 @@ This skill guides the preparation of NSERC Discovery Grant applications by groun
 
 ### Three Evaluation Criteria
 
+**Official Merit Indicators document**: https://www.nserc-crsng.gc.ca/_doc/Professors-Professeurs/DG_Merit_Indicators_eng.pdf
+
 NSERC reviewers evaluate applications based on three criteria, each assessed independently:
 
 1. **Excellence of the Researcher**
@@ -104,6 +106,7 @@ These tips come from experienced NSERC reviewers and should guide every aspect o
 - Coverage > depth for less central items
 
 **#10: CAREFULLY read the instructions in the online application**
+- Official instructions: https://www.nserc-crsng.gc.ca/ResearchPortal-PortailDeRecherche/Instructions-Instructions/DG-SD_eng.asp
 - Page limits, formatting requirements, required sections
 - What goes in CCV vs application form
 - Deadline dates and submission process
@@ -476,10 +479,21 @@ Use this checklist to ensure systematic coverage of all items.
 
 ## Resources and References
 
-### Key Documents (User Should Have)
-- **Merit Indicators document** (`DG_Merit_Indicators_eng.pdf`) - The evaluation framework
-- **Application instructions** (`NSERC-DG-instructions.pdf`) - Requirements and procedures
+### Key NSERC Documents
+
+- **Merit Indicators document** - The official evaluation framework
+  - PDF: https://www.nserc-crsng.gc.ca/_doc/Professors-Professeurs/DG_Merit_Indicators_eng.pdf
+  - Defines the three evaluation criteria and specific items reviewers assess
+  - Shows the 6-level rating scale and what each level means
+
+- **Application instructions** - Official requirements and procedures
+  - Web page: https://www.nserc-crsng.gc.ca/ResearchPortal-PortailDeRecherche/Instructions-Instructions/DG-SD_eng.asp
+  - Comprehensive instructions for completing Discovery Grants application
+  - Page limits, formatting requirements, required sections
+
 - **Top 10 Tips** (`Tips.pdf`) - Reviewer guidance from Chuck Lucy
+  - Practical advice from experienced NSERC reviewer
+  - Emphasizes package coherence, general audience, Merit Indicator coverage
 
 ### Recommended Actions
 - Read successful grants from senior colleagues in your department (Tip #1, #7)
