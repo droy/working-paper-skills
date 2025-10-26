@@ -501,7 +501,7 @@ When working with an organized NSERC application repository, follow these patter
 nserc-dg-2025/
 ├── Application.md                      # Text-only responses for web form
 ├── nserc-template.tex                  # Master template for all attachments
-├── header.tex                          # Theorem environments, packages, fonts
+├── headers.tex                         # Theorem environments, packages, fonts
 ├── defs.tex                            # Custom macros and notation
 ├── roy-nserc-proposal.tex              # Research proposal attachment
 ├── roy-nserc-budget-justification.tex  # Budget justification attachment
@@ -607,10 +607,10 @@ wc -c <<< "$(sed -n '/^# Section Name/,/^#/p' Application.md)"
 
 **Template hierarchy**:
 1. **`nserc-template.tex`**: Master template with document class, margins, font size
-2. **`header.tex`**: Theorem environments, packages, bibliography setup (imported by template)
+2. **`headers.tex`**: Theorem environments, packages, bibliography setup (imported by template)
 3. **`defs.tex`**: Custom macros like `\Reals`, `\KL`, `\EE` (imported by template)
 
-**IMPORTANT**: Do NOT change template files (`nserc-template.tex`, `header.tex`, `defs.tex`) unless explicitly requested by user. These provide consistent formatting across all attachments.
+**IMPORTANT**: Do NOT change template files (`nserc-template.tex`, `headers.tex`, `defs.tex`) unless explicitly requested by user. These provide consistent formatting across all attachments.
 
 **Document naming convention**: `roy-nserc-{attachment-name}.tex`
 
